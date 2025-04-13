@@ -9,4 +9,18 @@ while True:
     client_socket, addr = server_socket.accept()
     print(f'Connection from {addr}')
     request = client_socket.recv(1024).decode()
+    if (not request) or ('favicon.io' in request):
+        client_socket.close()
+        continue
+
+    request_line = request.splitlines()[0]
+    response = ("HTTP/1.1 200 OK\r\n"
+                "Content-Type: text/plains\r\n"
+                f"Content-Length: {len(request_line)}\r\n"
+                "\r\n"
+                f"{request_line}\n")
+
+
+    client_socket.sendall(response.encode())
+    client_socket.close()
 
