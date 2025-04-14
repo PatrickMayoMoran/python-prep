@@ -18,7 +18,11 @@ while True:
 
     request_line = request.splitlines()[0]
     http_method, path_and_params, _ = request_line.split(" ")
-    path, params = path_and_params.split("?")
+    if "?" in path_and_params:
+        path, params = path_and_params.split("?")
+    else:
+        path = path_and_params
+        params = "number=0"
 
     params = params.split("&")
     params_dict = {}
