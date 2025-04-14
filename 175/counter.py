@@ -26,6 +26,8 @@ while True:
         key, value = param.split("=")
         params_dict[key] = value
 
+    number = int(params_dict.get('number', 0))
+
     response_body = ("<html><head><title>Counter</title></head><body>"
                      f"<h1>HTTP Request Information:</h1>"
                      f"<p><strong>Request Line:</strong> {request_line}</p>"
@@ -33,6 +35,7 @@ while True:
                      f"<p><strong>Path:</strong> {path}</p>"
                      f"<p><strong>Parameters:</strong> {params_dict}</p>"
                      "<h2>Counter:</h2>"
+                     f'<p style="color: red;">The current number is: {number}</p>'
                      "</body></html>")
 
     response = ("HTTP/1.1 200 OK\r\n"
