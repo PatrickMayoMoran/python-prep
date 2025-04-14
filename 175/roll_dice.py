@@ -25,8 +25,8 @@ while True:
     request_line = request.splitlines()[0]
     request_line_components = request_line.split(' ')
     request_HTTP_method = request_line_components[0]
-    unparsed_path = request_line_components[2]
-    path, query_parameters = parse_path(unparsed_path)
+    unparsed_path = request_line_components[1]
+    request_path, query_parameters = parse_path(unparsed_path)
 
     response_body = (
         f"Request: {request_line}\n"
@@ -36,9 +36,9 @@ while True:
     )
 
     rolls = 0
-    while rolls < query_parameters['roll']:
+    while rolls < query_parameters['rolls']:
         roll = random.randint(1, query_parameters['sides'])
-        response_body += f"{roll}\n"
+        response_body += f"Roll: {roll}\n"
         rolls += 1
 
     response = ("HTTP/1.1 200 OK\r\n"
