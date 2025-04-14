@@ -28,21 +28,25 @@ while True:
     unparsed_path = request_line_components[1]
     request_path, query_parameters = parse_path(unparsed_path)
 
-    response_body = (
-        f"Request: {request_line}\n"
-        f"HTTP Method: {request_HTTP_method}\n"
-        f"Path: {request_path}\n"
-        f"Parameters: {query_parameters}\n"
-    )
+    response_body = ("<html><head><title>Dice Rolls</title></head><body>"
+                      "<h1>HTTP Request Information</h1>"
+                      f"<p><strong>Request Line:</strong> {request_line}</p>"
+                      f"<p><strong>HTTP Method:</strong> {request_HTTP_method}</p>"
+                      f"<p><strong>Path:</strong> {request_path}</p>"
+                      f"<p><strong>Parameters:</strong> {query_parameters}</p>"
+                      "<h2>Dice Rolls</h2>"
+                      "<ul>")
 
     rolls = 0
     while rolls < query_parameters['rolls']:
         roll = random.randint(1, query_parameters['sides'])
-        response_body += f"Roll: {roll}\n"
+        response_body += f"<li>Roll: {roll}</li>"
         rolls += 1
 
+    response_body += "</ul></body></html>"
+
     response = ("HTTP/1.1 200 OK\r\n"
-                "Content-Type: text/plains\r\n"
+                "Content-Type: text/html\r\n"
                 f"Content-Length: {len(response_body)}\r\n"
                 "\r\n"
                 f"{response_body}\n")
