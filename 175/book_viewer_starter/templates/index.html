@@ -6,9 +6,9 @@
 
     <title>The Adventures of Sherlock Holmes</title>
 
-    <link rel="stylesheet" href="static/stylesheets/pure-min.css">
-    <link rel="stylesheet" href="static/stylesheets/fonts.css">
-    <link rel="stylesheet" href="static/stylesheets/book_viewer.css">
+    <link rel="stylesheet" href={{ url_for('static', filename="stylesheets/pure-min.css") }}>
+    <link rel="stylesheet" href={{ url_for('static', filename="stylesheets/fonts.css") }}>
+    <link rel="stylesheet" href={{ url_for('static', filename="stylesheets/book_viewer.css") }}>
 </head>
 
 <body>
@@ -50,6 +50,6 @@
       </div>
   </div>
 
-  <script type="text/javascript" src="static/javascripts/ui.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='javascripts/ui.js') }}"></script>
 </body>
 </html>
