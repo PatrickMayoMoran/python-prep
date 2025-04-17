@@ -4,8 +4,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    with open("templates/index.html", "r") as file:
-        return file.read()
+    return render_template('index.html')
 
 if __name__ == "__main__":
     app.run(debug=True, port=5003)
