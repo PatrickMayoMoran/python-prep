@@ -23,9 +23,11 @@
               <a class="pure-menu-heading" href="/">Table of Contents</a>
 
               <ul class="pure-menu-list">
+                {% for chapter in contents %}
                 <li class="pure-menu-item">
-                  <a href="#" class="pure-menu-link">Chapter 1</a>
+                  <a href="#" class="pure-menu-link">{{ chapter }}</a>
                 </li>
+                {% endfor %}
               </ul>
           </div>
       </div>
