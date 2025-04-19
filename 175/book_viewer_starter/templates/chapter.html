@@ -3,6 +3,8 @@
 {% block content %}
   <h2 class="content-subhead">{{ chapter_title }}</h2>
 
-  {{ chapter }}
+  {% for paragraph in chapter %}
+  <p>{{ paragraph }}</p>
+  {% endfor %}
 
 {% endblock %}
