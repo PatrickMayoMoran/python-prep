@@ -39,7 +39,9 @@
         </div>
 
         <div class="content">
-          <p>{{ chapter }}</p>
+          {% for line in chapter %}
+          <p>{{ line }}</p>
+          {% endfor %}
         </div>
       </div>
   </div>
