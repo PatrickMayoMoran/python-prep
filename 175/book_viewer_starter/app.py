@@ -13,7 +13,8 @@ def chapter():
     with open("book_viewer/data/toc.txt", "r") as file:
         contents = file.readlines()
     with open("book_viewer/data/chp1.txt") as file:
-        chapter = file.readlines()
+        chapter = file.read()
+        chapter = chapter.split("\n\n")
     return render_template('chapter.html',
                             contents=contents,
                             chapter=chapter)
