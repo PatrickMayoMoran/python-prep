@@ -12,10 +12,15 @@ def index():
 def chapter(page_num):
     with open("book_viewer/data/toc.txt", "r") as file:
         contents = file.readlines()
+
+    chapter_name = contents[int(page_num) - 1]
+    chapter_title = f"Chapter {page_num}: {chapter_name}"
+
     with open(f"book_viewer/data/chp{page_num}.txt") as file:
         chapter = file.read()
         chapter = chapter.split("\n\n")
     return render_template('chapter.html',
+                            chapter_title=chapter_title,
                             contents=contents,
                             chapter=chapter)
 
