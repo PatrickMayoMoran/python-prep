@@ -8,11 +8,11 @@ def index():
         contents = file.readlines()
     return render_template('home.html', contents=contents)
 
-@app.route("/chapters/1")
-def chapter():
+@app.route("/chapters/<page_num>")
+def chapter(page_num):
     with open("book_viewer/data/toc.txt", "r") as file:
         contents = file.readlines()
-    with open("book_viewer/data/chp1.txt") as file:
+    with open(f"book_viewer/data/chp{page_num}.txt") as file:
         chapter = file.read()
         chapter = chapter.split("\n\n")
     return render_template('chapter.html',
