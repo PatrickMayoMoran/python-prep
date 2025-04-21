@@ -10,8 +10,13 @@ def chapters_matching(query):
     for chapter_number, name in enumerate(g.contents, start=1):
         with open(f"book_viewer/data/chp{chapter_number}.txt") as file:
             chapter = file.read()
-        if query.lower() in chapter.lower():
-            results.append({'number': chapter_number, 'name': name})
+
+        matches = {}
+        for para_index, paragraph in enumerate(in_paragraphs(chapter)):
+            if query.lower() in chapter.lower():
+                matches[para_index] = paragraph
+        if matches:
+            results.append({'number': chapter_number, 'name': name, 'paragraphs': matches})
 
     return results
 
