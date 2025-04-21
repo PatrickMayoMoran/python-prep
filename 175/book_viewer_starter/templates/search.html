@@ -8,14 +8,16 @@
     <button type="submit">Search</button>
   </form>
 
-  {% if matching_chapters %}
-    <h2 class="content-subhead">Results for {{ query }}</h2>
-    <ul>
-    {% for number, title in matching_chapters.items() %}
-    <li><a href="{{ url_for('chapter', page_num=number) }}">{{ title }}</li>
-    {% endfor %}
-    </ul>
-  {% else %}
-    <p>Sorry, no matches were found.</p>
+  {% if query %}
+    {% if results | length == 0 %}
+      <p>Sorry, no matches were found.</p>
+    {% else %}
+      <h2 class="content-subhead">Results for {{ query }}</h2>
+      <ul>
+      {% for result in results %}
+      <li><a href="{{ url_for('chapter', page_num=result.number) }}">{{ result.name }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
   {% endif %}
 {% endblock %}
