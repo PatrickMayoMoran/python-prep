@@ -44,7 +44,7 @@ def search():
         with open(f"book_viewer/data/chp{i}.txt") as file:
             chapter = file.read()
         if query in chapter:
-            matching_chapters.push(i)
+            matching_chapters.append(i)
 
     return render_template('search.html',
                             query=query,
