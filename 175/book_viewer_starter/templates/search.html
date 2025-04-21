@@ -10,7 +10,11 @@
 
   {% if matching_chapters %}
     <h2 class="content-subhead">Results for {{ query }}</h2>
-    <p>{{ matching_chapters }}</p>
+    <ul>
+    {% for number, title in matching_chapters.items() %}
+    <li><a href="{{ url_for('chapter', page_num=number) }}">{{ title }}</li>
+    {% endfor %}
+    </ul>
   {% else %}
     <p>Sorry, no matches were found.</p>
   {% endif %}
