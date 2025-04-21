@@ -2,6 +2,9 @@ from flask import Flask, render_template, g, redirect, request
 
 app = Flask(__name__)
 
+def highlight(text, term)
+    return text.replace(term, f'<strong>{term}</strong>')
+
 def chapters_matching(query):
     if not query:
         return []
@@ -14,6 +17,7 @@ def chapters_matching(query):
         matches = {}
         for para_index, paragraph in enumerate(in_paragraphs(chapter)):
             if query.lower() in paragraph.lower():
+                
                 matches[para_index] = paragraph
         if matches:
             results.append({'number': chapter_number, 'name': name, 'paragraphs': matches})
@@ -24,6 +28,7 @@ def in_paragraphs(text):
     return text.split("\n\n")
 
 app.jinja_env.filters['in_paragraphs'] = in_paragraphs
+app.jinja_env.filters['highlight'] = highlight
 
 @app.before_request
 def load_contents():
