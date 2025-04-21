@@ -37,7 +37,9 @@ def chapter(page_num):
 @app.route("/search")
 def search():
     query = request.args.get('query')
-    return render_template('search.html', query=query)
+    return render_template('search.html',
+                            query=query,
+                            contents=g.contents)
 
 @app.errorhandler(404)
 def page_not_found(error):
