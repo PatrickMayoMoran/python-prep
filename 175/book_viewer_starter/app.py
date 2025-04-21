@@ -16,13 +16,7 @@ def chapters_matching(query):
     return results
 
 def in_paragraphs(text):
-    paragraphs = text.split("\n\n")
-    formatted_paragraphs = [
-      f'<p>{paragraph}</p>'
-      for paragraph in paragraphs
-      if paragraph
-    ]
-    return ''.join(formatted_paragraphs)
+    return text.split("\n\n")
 
 app.jinja_env.filters['in_paragraphs'] = in_paragraphs
 
