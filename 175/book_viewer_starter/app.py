@@ -2,6 +2,17 @@ from flask import Flask, render_template, g
 
 app = Flask(__name__)
 
+def in_paragraphs(text):
+    paragraphs = text.split("\n\n")
+    formatted_paragraphs = [
+      f'<p>{paragraph}</p>'
+      for paragraph in paragraphs
+      if paragraph
+    ]
+    return ''.join(formatted_paragraphs)
+
+app.jinja_env.filters['in_paragraphs'] = in_paragraphs
+
 @app.before_request
 def load_contents():
     with open("book_viewer/data/toc.txt", "r") as file:
@@ -18,7 +29,6 @@ def chapter(page_num):
 
     with open(f"book_viewer/data/chp{page_num}.txt") as file:
         chapter = file.read()
-        chapter = chapter.split("\n\n")
     return render_template('chapter.html',
                             chapter_title=chapter_title,
                             contents=g.contents,
