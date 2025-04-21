@@ -13,7 +13,7 @@ def chapters_matching(query):
 
         matches = {}
         for para_index, paragraph in enumerate(in_paragraphs(chapter)):
-            if query.lower() in chapter.lower():
+            if query.lower() in paragraph.lower():
                 matches[para_index] = paragraph
         if matches:
             results.append({'number': chapter_number, 'name': name, 'paragraphs': matches})
