@@ -1,4 +1,4 @@
-from flask import Flask, render_template, g
+from flask import Flask, render_template, g, redirect
 
 app = Flask(__name__)
 
@@ -33,6 +33,10 @@ def chapter(page_num):
                             chapter_title=chapter_title,
                             contents=g.contents,
                             chapter=chapter)
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return redirect('/')
 
 if __name__ == "__main__":
     app.run(debug=True, port=5003)
