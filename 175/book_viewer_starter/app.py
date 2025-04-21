@@ -48,7 +48,8 @@ def search():
 
     return render_template('search.html',
                             query=query,
-                            contents=g.contents)
+                            contents=g.contents,
+                            matching_chapters=matching_chapters)
 
 @app.errorhandler(404)
 def page_not_found(error):
