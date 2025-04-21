@@ -34,6 +34,11 @@ def chapter(page_num):
                             contents=g.contents,
                             chapter=chapter)
 
+@app.route("/search")
+def search():
+    query = request.args.get('query')
+    return render_template('search.html', query=query)
+
 @app.errorhandler(404)
 def page_not_found(error):
     return redirect('/')
