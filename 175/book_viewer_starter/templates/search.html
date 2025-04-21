@@ -8,6 +8,10 @@
     <button type="submit">Search</button>
   </form>
 
-  <h2 class="content-subhead">Results for {{ query }}</h2>
-  <p>{{ matching_chapters }}</p>
+  {% if matching_chapters %}
+    <h2 class="content-subhead">Results for {{ query }}</h2>
+    <p>{{ matching_chapters }}</p>
+  {% else %}
+    <p>Sorry, no matches were found.</p>
+  {% endif %}
 {% endblock %}
