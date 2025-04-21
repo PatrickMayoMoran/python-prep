@@ -3,6 +3,8 @@
 {% block content %}
   <h2 class="content-subhead">{{ chapter_title }}</h2>
 
-  {{ chapter | in_paragraphs | safe }}
+  {% for paragraph in chapter | in_paragraphs %}
+    <p id="{{ loop.index0}}">{{ paragraph | safe }}</p>
+  {% endfor %}
 
 {% endblock %}
