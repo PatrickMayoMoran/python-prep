@@ -37,6 +37,15 @@ def chapter(page_num):
 @app.route("/search")
 def search():
     query = request.args.get('query', '')
+    # Search for text in chapter
+    # loop through chapters numbers 1 through 12
+    matching_chapters = []
+    for i in range(1,13):
+        with open(f"book_viewer/data/chp{i}.txt") as file:
+            chapter = file.read()
+        if query in chapter:
+            matching_chapters.push(i)
+
     return render_template('search.html',
                             query=query,
                             contents=g.contents)
