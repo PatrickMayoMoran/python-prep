@@ -2,6 +2,19 @@ from flask import Flask, render_template, g, redirect, request
 
 app = Flask(__name__)
 
+def chapters_matching(query):
+    if not query:
+        return []
+
+    results = []
+    for chapter_number, name in enumerate(g.contents, start=1):
+        with open(f"book_viewer/data/chp{chapter_number}.txt") as file:
+            chapter = file.read()
+        if query.lower() in chapter.lower():
+            results.append({'number': chapter_number, 'name': name})
+
+    return results
+
 def in_paragraphs(text):
     paragraphs = text.split("\n\n")
     formatted_paragraphs = [
@@ -37,18 +50,11 @@ def chapter(page_num):
 @app.route("/search")
 def search():
     query = request.args.get('query', '')
-    matching_chapters = {}
-    for chapter_number in range(1,13):
-        with open(f"book_viewer/data/chp{chapter_number}.txt") as file:
-            chapter = file.read()
-        if query in chapter:
-            chapter_name = g.contents[int(chapter_number) - 1]
-            matching_chapters[chapter_number] = chapter_name
-
+    results = chapters_matching(query) if query else []
     return render_template('search.html',
                             query=query,
                             contents=g.contents,
-                            matching_chapters=matching_chapters)
+                            results=results)
 
 @app.errorhandler(404)
 def page_not_found(error):
