@@ -2,7 +2,7 @@ from flask import Flask, render_template, g, redirect, request
 
 app = Flask(__name__)
 
-def highlight(text, term)
+def highlight(text, term):
     return text.replace(term, f'<strong>{term}</strong>')
 
 def chapters_matching(query):
