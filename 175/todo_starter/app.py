@@ -33,7 +33,11 @@ def get_lists():
 @app.route("/lists", methods=["POST"])
 def create_list():
     title = request.form["list_title"].strip()
-    session['lists'].append({'title': title, 'todos': []})
+    session['lists'].append({
+          'id': str(uuid4()),
+          'title': title,
+          'todos': [],
+    })
     session.modified = True
     return redirect(url_for('get_lists'))
 
