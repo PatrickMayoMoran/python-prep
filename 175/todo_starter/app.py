@@ -3,6 +3,11 @@ from flask import Flask, render_template, redirect, url_for, session
 app = Flask(__name__)
 app.secret_key='secret1'
 
+@app.before_request
+def initialize_session():
+    if 'lists' not in session:
+        session['lists'] = []
+
 @app.route("/")
 def index():
     return redirect(url_for('get_lists'))
