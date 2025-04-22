@@ -28,5 +28,12 @@ def add_todo_list():
 def get_lists():
     return render_template('lists.html', lists=session['lists'])
 
+@app.route("/lists", methods=["POST"])
+def create_list():
+    title = request.form["list_title"].strip()
+    session['lists'].append({'title': title, 'todos': []})
+    session.modified = True
+    return redirect(url_for('get_lists'))
+
 if __name__ == "__main__":
     app.run(debug=True, port=5003)
