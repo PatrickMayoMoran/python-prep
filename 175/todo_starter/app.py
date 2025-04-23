@@ -39,6 +39,7 @@ def create_list():
           'title': title,
           'todos': [],
     })
+    flash("The list has been created.", "success")
     session.modified = True
     return redirect(url_for('get_lists'))
 
