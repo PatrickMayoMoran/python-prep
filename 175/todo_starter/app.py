@@ -1,6 +1,7 @@
 from uuid import uuid4
 
 from flask import (
+    flash,
     Flask,
     redirect,
     render_template,
