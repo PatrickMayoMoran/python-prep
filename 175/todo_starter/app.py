@@ -34,6 +34,10 @@ def get_lists():
 @app.route("/lists", methods=["POST"])
 def create_list():
     title = request.form["list_title"].strip()
+    if not title:
+        flash("A title was not provided", "error")
+        return render_template('new_list.html')
+
     session['lists'].append({
           'id': str(uuid4()),
           'title': title,
