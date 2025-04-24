@@ -37,7 +37,7 @@ def create_list():
 
     if any(lst['title'] == title for lst in session['lists']):
         flash("The title must be unique.", "error")
-        return render_template('new_list.html')
+        return render_template('new_list.html', title=title)
 
     if 1 <= len(title) <= 100:
         session['lists'].append({
@@ -51,7 +51,7 @@ def create_list():
         return redirect(url_for('get_lists'))
 
     flash("The title must be between 1 and 100 characters.", "error")
-    return render_template('new_list.html')
+    return render_template('new_list.html', title=title)
 
 
 if __name__ == "__main__":
