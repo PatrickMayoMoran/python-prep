@@ -77,7 +77,7 @@ def add_todo(list_id):
         flash(error, "error")
         return render_template('list.html', lst=lst)
 
-    lst.todos.append({
+    lst['todos'].append({
       'title': title,
       'completed': False,
       'id': str(uuid4())
