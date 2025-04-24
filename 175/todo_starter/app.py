@@ -65,7 +65,7 @@ def show_list(list_id):
 
     return render_template('list.html', lst=lst)
 
-@app.route("/lists/<list_id>/todos", ["POST"])
+@app.route("/lists/<list_id>/todos", methods=["POST"])
 def add_todo(list_id):
     title = request.form['todo'].strip()
     lst = find_list_by_id(list_id, session['lists'])
