@@ -59,9 +59,7 @@ def show_list(list_id):
     if not lst:
         raise NotFound(description="List not found")
 
-    render_template('list.html', lst=lst)
-
-    
+    return render_template('list.html', lst=lst)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5003)
