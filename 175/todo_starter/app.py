@@ -34,6 +34,11 @@ def get_lists():
 @app.route("/lists", methods=["POST"])
 def create_list():
     title = request.form["list_title"].strip()
+
+    if any(lst['title'] == title for lst in session['lists']):
+        flash("The title must be unique.", "error")
+        return render_template('new_list.html')
+
     if 1 <= len(title) <= 100:
         session['lists'].append({
               'id': str(uuid4()),
