@@ -65,7 +65,16 @@ def show_list(list_id):
 
 @app.route("/lists/<list_id>/todos", ["POST"])
 def add_todo(list_id):
-    valid_name = 
+    title = request.form['todo'].strip()
+    lst = find_list_by_id(list_id, session['lists'])
+    if not lst:
+        raise NotFound(description="List not found")
+
+    error = error_for_todo_title(title)
+    if error:
+        flash(error, "error")
+        return render_template('list.html', lst=lst)
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=5003)
