@@ -11,7 +11,9 @@ from flask import (
 )
 
 from werkzeug.exceptions import NotFound
-from todos.utils import error_for_list_title, find_list_by_id
+from todos.utils import error_for_list_title,
+                        find_list_by_ie,
+                        error_for_todo_title
 
 app = Flask(__name__)
 app.secret_key='secret1'
@@ -60,6 +62,10 @@ def show_list(list_id):
         raise NotFound(description="List not found")
 
     return render_template('list.html', lst=lst)
+
+@app.route("/lists/<list_id>/todos", ["POST"])
+def add_todo(list_id):
+    valid_name = 
 
 if __name__ == "__main__":
     app.run(debug=True, port=5003)
