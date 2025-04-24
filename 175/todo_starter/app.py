@@ -99,7 +99,7 @@ def toggle(list_id, todo_id):
         raise NotFound(description="Todo not found")
 
     completed_status = request.form['completed']
-    new_status = True if completed_status == 'False'  else False
+    new_status = completed_status == 'True'
 
     if new_status:
         flash(f"{todo['title']} has been completed.", "success")
