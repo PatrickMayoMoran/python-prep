@@ -13,7 +13,7 @@ from flask import (
 from werkzeug.exceptions import NotFound
 from todos.utils import (
       error_for_list_title,
-      find_list_by_ie,
+      find_list_by_id,
       error_for_todo_title
 )
 
