@@ -34,18 +34,20 @@ def get_lists():
 @app.route("/lists", methods=["POST"])
 def create_list():
     title = request.form["list_title"].strip()
-    if not title:
-        flash("A title was not provided", "error")
-        return render_template('new_list.html')
+    if 1 <= len(title) <= 100:
+        session['lists'].append({
+              'id': str(uuid4()),
+              'title': title,
+              'todos': [],
+        })
 
-    session['lists'].append({
-          'id': str(uuid4()),
-          'title': title,
-          'todos': [],
-    })
-    flash("The list has been created.", "success")
-    session.modified = True
-    return redirect(url_for('get_lists'))
+        flash("The list has been created.", "success")
+        session.modified = True
+        return redirect(url_for('get_lists'))
+
+    flash("The title must be between 1 and 100 characters.", "error")
+    return render_template('new_list.html')
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=5003)
