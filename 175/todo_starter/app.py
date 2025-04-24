@@ -102,12 +102,12 @@ def toggle(list_id, todo_id):
     new_status = True if completed_status == 'False'  else False
 
     if new_status:
-        flash(f"{todo.title} has been completed.", "success")
+        flash(f"{todo['title']} has been completed.", "success")
     else:
-        flash(f"{todo.title} has been marked incomplete.", "success")
+        flash(f"{todo['title']} has been marked incomplete.", "success")
 
-    todo.completed = new_status
-    redirect(url_for('show_list', list_id=list_id))
+    todo['completed'] = new_status
+    return redirect(url_for('show_list', list_id=list_id))
 
 if __name__ == "__main__":
     app.run(debug=True, port=5003)
