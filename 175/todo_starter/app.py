@@ -94,9 +94,20 @@ def toggle(list_id, todo_id):
     if not lst:
         raise NotFound(description="List not found")
 
-    todo = find_todo_by_id(todo_id, lst)
+    todo = find_todo_by_id(todo_id, lst['todos'])
     if not todo:
         raise NotFound(description="Todo not found")
+
+    completed_status = request.form['completed']
+    new_status = True if completed_status == 'False'  else False
+
+    if new_status:
+        flash(f"{todo.title} has been completed.", "success")
+    else:
+        flash(f"{todo.title} has been marked incomplete.", "success")
+
+    todo.completed = new_status
+    redirect(url_for('show_list', list_id=list_id))
 
 if __name__ == "__main__":
     app.run(debug=True, port=5003)
