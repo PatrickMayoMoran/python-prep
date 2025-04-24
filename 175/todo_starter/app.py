@@ -85,7 +85,7 @@ def add_todo(list_id):
 
     flash("The todo has been added.", "success")
     session.modified = True
-    return render_template('list.html', lst=lst)
+    return redirect(url_for('show_list', list_id=list_id))
 
 
 if __name__ == "__main__":
