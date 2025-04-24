@@ -11,7 +11,7 @@ from flask import (
 )
 
 from werkzeug.exceptions import NotFound
-from todos.utils import error_for_list_title
+from todos.utils import error_for_list_title, find_list_by_id
 
 app = Flask(__name__)
 app.secret_key='secret1'
@@ -55,7 +55,7 @@ def create_list():
 
 @app.route("/lists/<list_id>")
 def show_list(list_id):
-    lst = next((lst for lst in session['lists'] if lst['id'] == list_id), None)
+    lst = find_list_by_id(list_id, session['lists'])
     if not lst:
         raise NotFound(description="List not found")
 
