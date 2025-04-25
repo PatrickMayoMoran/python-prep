@@ -152,5 +152,12 @@ def edit_list(list_id):
     if not lst:
         raise NotFound(description="List not found")
 
+    title = request.form["list_title"].strip()
+
+    error = error_for_list_title(title, session["lists"])
+    if error:
+        flash(error, "error")
+        return render_template('edit_list.html', title=title, list_id=list_id)
+
 if __name__ == "__main__":
     app.run(debug=True, port=5003)
