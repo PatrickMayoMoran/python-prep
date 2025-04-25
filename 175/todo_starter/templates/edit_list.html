@@ -2,10 +2,16 @@
 
 {% block content %}
   <section id='todos'>
-    <h3>Editing '{{ lst.title }}'</h3>
-    <form class="delete" action="/lists/{{ lst.id }}/delete" method="post">
-      <button type="submit">Delete List</button>
-    </form>
+    <header>
+      <h2>Editing '{{ lst.title }}'</h2>
+      <ul>
+        <li>
+          <form class="delete" action="/lists/{{ lst.id }}/delete" method="post">
+            <button type="submit" class="delete">Delete List</button>
+          </form>
+        </li>
+      </ul>
+    </header>
   </section>
 
   <form action="/lists/{{ lst.id}}" method="post">
