@@ -121,7 +121,7 @@ def delete_todo(list_id, todo_id):
     if not todo:
         raise NotFound(description="Todo not found")
 
-    delete_todo_by_id(todo_id, lst):
+    delete_todo_by_id(todo_id, lst)
     flash("Todo has been deleted.", "success")
     session.modified = True
     return redirect(url_for('show_list', list_id=list_id))
