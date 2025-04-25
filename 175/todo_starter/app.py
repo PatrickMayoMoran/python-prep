@@ -177,7 +177,11 @@ def delete_list(list_id):
     if not lst:
         raise NotFound(description="List not found")
 
+    session['lists'] = [lst for lst in session['lists']
+                        if lst['id'] != list_id]
+
     flash("The list has been deleted.", "success")
+    session.modified = True
     return redirect(url_for('get_lists'))
 
 if __name__ == "__main__":
