@@ -154,7 +154,7 @@ def edit_list(list_id):
         raise NotFound(description="List not found")
 
     title = lst['title']
-    return render_template('edit_list.html', title=title)
+    return render_template('edit_list.html', title=title, lst=lst)
 
 # Submit a new list title
 @app.route("/lists/<list_id>", methods=["POST"])
