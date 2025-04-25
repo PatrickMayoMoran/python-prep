@@ -156,9 +156,9 @@ def edit_list(list_id):
     title = lst['title']
     return render_template('edit_list.html', title=title, lst=lst)
 
-# Submit a new list title
+# Update a new list title
 @app.route("/lists/<list_id>", methods=["POST"])
-def submit_list(list_id):
+def update_list(list_id):
     lst = find_list_by_id(list_id, session["lists"])
     if not lst:
         raise NotFound(description="List not found")
