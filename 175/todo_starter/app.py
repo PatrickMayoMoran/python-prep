@@ -168,7 +168,7 @@ def submit_list(list_id):
     error = error_for_list_title(title, session["lists"])
     if error:
         flash(error, "error")
-        return render_template('edit_list.html', title=title, list_id=list_id)
+        return render_template('edit_list.html', title=title, lst=lst)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5003)
