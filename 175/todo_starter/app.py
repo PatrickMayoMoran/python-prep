@@ -108,6 +108,7 @@ def toggle(list_id, todo_id):
         flash(f"{todo['title']} has been marked incomplete.", "success")
 
     todo['completed'] = new_status
+    session.modified = True
     return redirect(url_for('show_list', list_id=list_id))
 
 @app.route("/lists/<list_id>/todos/<todo_id>/delete", methods=["POST"])
