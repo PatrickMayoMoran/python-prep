@@ -16,6 +16,7 @@ from todos.utils import (
       find_list_by_id,
       error_for_todo_title,
       find_todo_by_id,
+      delete_todo_by_id,
 )
 
 app = Flask(__name__)
@@ -118,6 +119,8 @@ def delete_todo(list_id, todo_id):
     todo = find_todo_by_id(todo_id, lst['todos'])
     if not todo:
         raise NotFound(description="Todo not found")
+
+    delete_todo_by_id(todo_id, lst):
 
 if __name__ == "__main__":
     app.run(debug=True, port=5003)
