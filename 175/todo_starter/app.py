@@ -126,5 +126,18 @@ def delete_todo(list_id, todo_id):
     session.modified = True
     return redirect(url_for('show_list', list_id=list_id))
 
+@app.route("/lists/<list_id>/complete_all", methods=["POST"])
+def complete_all(list_id):
+    lst = find_list_by_id(list_id, session['lists'])
+    if not lst:
+        raise NotFound(description="List not found")
+
+    for todo in lst['todos']:
+        todo['completed'] = True
+
+    flash("All todos have been completed.", "success")
+    session.modified = True
+    return redirect(url_for('show_list', list_id=list_id))
+
 if __name__ == "__main__":
     app.run(debug=True, port=5003)
