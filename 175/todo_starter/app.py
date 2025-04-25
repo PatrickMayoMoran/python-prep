@@ -146,9 +146,19 @@ def complete_all(list_id):
     session.modified = True
     return redirect(url_for('show_list', list_id=list_id))
 
-# Edit a list title
-@app.route("/lists/<list_id>", methods=["POST"])
+# View Edit list page
+@app.route("/lists/<list_id>/edit")
 def edit_list(list_id):
+    lst = find_list_by_id(list_id, session["lists"])
+    if not lst:
+        raise NotFound(description="List not found")
+
+    title = lst['title']
+    return render_template('edit_list.html', title=title)
+
+# Submit a new list title
+@app.route("/lists/<list_id>", methods=["POST"])
+def submit_list(list_id):
     lst = find_list_by_id(list_id, session["lists"])
     if not lst:
         raise NotFound(description="List not found")
