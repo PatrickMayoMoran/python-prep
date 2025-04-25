@@ -170,5 +170,15 @@ def submit_list(list_id):
         flash(error, "error")
         return render_template('edit_list.html', title=title, lst=lst)
 
+# Delete a list
+@app.route("/lists/<list_id>/delete", methods=["POST"])
+def delete_list(list_id):
+    lst = find_list_by_id(list_id, session["lists"])
+    if not lst:
+        raise NotFound(description="List not found")
+
+    flash("The list has been deleted.", "success")
+    return redirect(url_for('get_lists'))
+
 if __name__ == "__main__":
     app.run(debug=True, port=5003)
