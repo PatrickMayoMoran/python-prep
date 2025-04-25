@@ -25,5 +25,4 @@ def delete_todo_by_id(todo_id, lst):
 def mark_all_completed(lst):
     for todo in lst['todos']:
         todo['completed'] = True
-
     return None
