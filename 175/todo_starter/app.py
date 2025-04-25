@@ -170,6 +170,11 @@ def submit_list(list_id):
         flash(error, "error")
         return render_template('edit_list.html', title=title, lst=lst)
 
+    lst['title'] = title
+    flash("List title has been updated", "success")
+    session.modified = True
+    return redirect(url_for('show_list', list_id=list_id))
+
 # Delete a list
 @app.route("/lists/<list_id>/delete", methods=["POST"])
 def delete_list(list_id):
