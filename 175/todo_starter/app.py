@@ -121,6 +121,8 @@ def delete_todo(list_id, todo_id):
         raise NotFound(description="Todo not found")
 
     delete_todo_by_id(todo_id, lst):
+    flash("Todo has been deleted.", "success")
+    session.modified = True
 
 if __name__ == "__main__":
     app.run(debug=True, port=5003)
