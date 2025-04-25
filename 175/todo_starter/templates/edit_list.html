@@ -4,8 +4,18 @@
   <section id='todos'>
   </section>
 
-  <form action="/lists/{{ lst.id}}" method="POST">
-  <label for="title">Enter the new title for the list:</label>
-  <input type="text" id="title" name="list_title" value="{{ title or lst.title}}">
+  <form action="/lists/{{ lst.id}}" method="post">
+    <dl>
+      <dt>
+        <label for="title">Enter the new title for the list:</label>
+      </dt>
+      <dd>
+        <input type="text" id="title" name="list_title" value="{{ title or lst.title}}">
+      </dd>
+    </dl>
+    <fieldset class="actions">
+      <input type="submit" value="Save">
+      <a href="{{ url_for('show_list', list_id=lst.id) }}">Cancel</a>
+    </fieldset>
   </form>
 {% endblock %}
