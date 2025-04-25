@@ -17,6 +17,7 @@ from todos.utils import (
       error_for_todo_title,
       find_todo_by_id,
       delete_todo_by_id,
+      mark_all_completed,
 )
 
 app = Flask(__name__)
@@ -132,8 +133,7 @@ def complete_all(list_id):
     if not lst:
         raise NotFound(description="List not found")
 
-    for todo in lst['todos']:
-        todo['completed'] = True
+    mark_all_completed(lst)
 
     flash("All todos have been completed.", "success")
     session.modified = True
